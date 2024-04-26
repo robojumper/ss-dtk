@@ -284,7 +284,7 @@ config.libs = [
             Object(NonMatching, "toBeSorted/file_manager.cpp"),
             Object(NonMatching, "toBeSorted/save_manager.cpp"),
             Object(NonMatching, "f/f_base.cpp"),
-            Object(NonMatching, "f/f_list.cpp"),
+            Object(Matching, "f/f_list.cpp"),
             Object(NonMatching, "f/f_manager.cpp"),
             Object(NonMatching, "m/m_heap.cpp"),
             Object(NonMatching, "m/m_mtx.cpp"),

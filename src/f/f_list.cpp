@@ -85,3 +85,6 @@ void fLiNdBa_c::unlink() {
         p_owner = nullptr;
     }
 }
+
+/* 802E2880 */
+fLiMgBa_c::~fLiMgBa_c() {}
