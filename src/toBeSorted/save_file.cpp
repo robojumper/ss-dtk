@@ -58,15 +58,15 @@ u16* SaveFile::getZoneFlags1() {
     return zone_flags;
 }
 // 0x80009A90   getUnkFlags0__8SaveFileFv
-u16* SaveFile::getUnkFlags0() {
-    return unk_flags;
+u16* SaveFile::getEnemyFlags0() {
+    return enemy_flags;
 }
 // 0x80009AA0   getUnkFlags1__8SaveFileFv
-u16* SaveFile::getUnkFlags1() {
-    return unk_flags;
+u16* SaveFile::getEnemyFlags1() {
+    return enemy_flags;
 }
 // 0x80009AB0   getPlayerName__8SaveFileFv
-s16* SaveFile::getPlayerName() {
+u16* SaveFile::getPlayerName() {
     return player_name;
 }
 
