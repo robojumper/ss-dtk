@@ -286,7 +286,7 @@ config.libs = [
             Object(NonMatching, "d/a/obj/d_a_obj_base.cpp"),
             Object(Matching, "toBeSorted/save_file.cpp"),
             Object(Matching, "toBeSorted/counters/counter.cpp"),
-            Object(NonMatching, "toBeSorted/counters/counters.cpp"),
+            Object(NonMatching, "toBeSorted/counters/counters.cpp", extra_cflags = [ "-pool off" ]),
             Object(NonMatching, "toBeSorted/counters/small_key_counter.cpp"),
             Object(Matching, "toBeSorted/counters/rupee_counter.cpp"),
             Object(Matching, "toBeSorted/counters/arrow_counter.cpp"),

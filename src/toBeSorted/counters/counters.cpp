@@ -1,15 +1,20 @@
-#include <toBeSorted/counters/counter.h>
-#include <toBeSorted/counters/small_key_counter.h>
 #include <toBeSorted/counters/arrow_counter.h>
-#include <toBeSorted/counters/rupee_counter.h>
 #include <toBeSorted/counters/bomb_counter.h>
-#include <toBeSorted/counters/tear_counter.h>
-#include <toBeSorted/counters/key_piece_counter.h>
-#include <toBeSorted/counters/slingshot_seed_counter.h>
-#include <toBeSorted/counters/extra_wallet_counter.h>
-#include <toBeSorted/counters/simple_counters.h>
+#include <toBeSorted/counters/counter.h>
 #include <toBeSorted/counters/counters.h>
+#include <toBeSorted/counters/extra_wallet_counter.h>
+#include <toBeSorted/counters/key_piece_counter.h>
+#include <toBeSorted/counters/rupee_counter.h>
+// clang-format off
+// vtable order matters
+#include <toBeSorted/counters/small_key_counter.h>
+#include <toBeSorted/counters/simple_counters.h>
+// clang-format on
+#include <toBeSorted/counters/slingshot_seed_counter.h>
+#include <toBeSorted/counters/tear_counter.h>
 
+// TODO this file matches except for the __sinit_ statit initializer,
+// where this version saves and loads more vtables per chunk
 
 SmallKeyCounter small_key_counter;
 PouchExpansionCounter pouch_expansion_counter;
@@ -53,15 +58,42 @@ BlueBirdFeatherCounter blue_bird_feather_counter;
 GoldenSkullCounter golden_skull_counter;
 GoddessPlumeCounter goddess_plume_counter;
 GratitudeCrystalCounter gratitude_crystal_counter;
+/*
+Counter *ITEM_COUNTERS[40] = {
+        &rupee_counter,
+        &arrow_counter,
+        &bomb_counter,
+        &slingshot_seed_counter,
+        &tear_counter,
+        &key_piece_counter,
+        &small_key_counter,
+        &pouch_expansion_counter,
+        &heart_piece_counter,
+        &heart_container_counter,
+        &faron_grasshopper_counter,
+        &woodland_rhino_beetle_counter,
+        &deku_hornet_counter,
+        &skyloft_mantis_counter,
+        &volcanic_ladybug_counter,
+        &blessed_butterfly_counter,
+        &lanayru_ant_counter,
+        &sand_cicada_counter,
+        &gerudo_dragonfly_counter,
+        &eldin_roller_counter,
+        &sky_stag_beetle_counter,
+        &starry_firefly_counter,
+        &hornet_larvae_counter,
+        &bird_feather_counter,
+};
+*/
 
 class Counters {
 public:
     Counters() {
-
         ITEM_COUNTERS[0] = &rupee_counter;
         ITEM_COUNTERS[1] = &arrow_counter;
         ITEM_COUNTERS[2] = &bomb_counter;
-        ITEM_COUNTERS[3] = &key_piece_counter;
+        ITEM_COUNTERS[5] = &key_piece_counter;
 
         ITEM_COUNTERS[24] = &tumbleweed_counter;
         ITEM_COUNTERS[25] = &lizard_tail_counter;
@@ -78,9 +110,8 @@ public:
         ITEM_COUNTERS[36] = &golden_skull_counter;
         ITEM_COUNTERS[37] = &goddess_plume_counter;
 
-
+        ITEM_COUNTERS[3] = &slingshot_seed_counter;
         ITEM_COUNTERS[4] = &tear_counter;
-        ITEM_COUNTERS[5] = &slingshot_seed_counter;
 
         ITEM_COUNTERS[6] = &small_key_counter;
         ITEM_COUNTERS[7] = &pouch_expansion_counter;
@@ -96,7 +127,7 @@ public:
         ITEM_COUNTERS[16] = &lanayru_ant_counter;
         ITEM_COUNTERS[17] = &sand_cicada_counter;
         ITEM_COUNTERS[18] = &gerudo_dragonfly_counter;
-        ITEM_COUNTERS[19] = &eldin_ore_counter;
+        ITEM_COUNTERS[19] = &eldin_roller_counter;
         ITEM_COUNTERS[20] = &sky_stag_beetle_counter;
         ITEM_COUNTERS[21] = &starry_firefly_counter;
         ITEM_COUNTERS[22] = &hornet_larvae_counter;

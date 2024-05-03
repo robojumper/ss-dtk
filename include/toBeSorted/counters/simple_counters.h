@@ -12,7 +12,7 @@ public:
 
 class HeartPieceCounter : public Counter {
 public:
-    HeartPieceCounter() : Counter(0x1e0) {}
+    HeartPieceCounter() : Counter(0x1e9) {}
     /* 8016cec0 */ ~HeartPieceCounter() {}
     /* 8016d990 */ virtual u16 getMax() override;
     /* 8016cf00 */ virtual s32 checkedAdd(s32 num) override;
