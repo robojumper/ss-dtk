@@ -1,14 +1,7 @@
 #include <toBeSorted/counters/counter.h>
+#include <toBeSorted/counters/extra_wallet_counter.h>
 
-class ExtraWalletCounter : public Counter {
-public:
-    ExtraWalletCounter();
-    /* 8016E220 */ ~ExtraWalletCounter() {}
-    virtual u16 getMax() override;
-};
-
-
-/* 80575640 */ ExtraWalletCounter lbl_80575640;
+/* 80575640 */ ExtraWalletCounter extra_wallet_counter;
 
 /* 8016E260 */ ExtraWalletCounter::ExtraWalletCounter(): Counter(0x1fc) { }
 /* 8016E280 */ u16 ExtraWalletCounter::getMax() {
