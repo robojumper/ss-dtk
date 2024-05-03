@@ -130,6 +130,13 @@ toBeSorted/skipflag_manager.cpp:
 toBeSorted/counters/counter.cpp:
 	.text       start:0x8016CC40 end:0x8016CD94
 
+toBeSorted/counters/small_key_counter.cpp:
+	.text       start:0x8016CDA0 end:0x8016CE34
+
+toBeSorted/counters/counters.cpp:
+	.text       start:0x8016CE40 end:0x8016DE08
+	.ctors      start:0x804DB7B8 end:0x804DB7BC
+
 toBeSorted/counters/rupee_counter.cpp:
 	.text       start:0x8016DE10 end:0x8016DF98
 	.ctors      start:0x804DB7BC end:0x804DB7C0

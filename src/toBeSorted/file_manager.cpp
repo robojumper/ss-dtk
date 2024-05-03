@@ -238,4 +238,3 @@ bool FileManager::isFileInactive() {
 /* 80011500 */ void FileManager::setPlayerInfoFileA() {}
 /* 800115E0 */ void FileManager::setT3Info(mVec3_c* pos, mAng3_c* rot) {}
 /* 800116C0 */ void FileManager::getRegionVersion(char* out) {}
-

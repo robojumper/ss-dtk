@@ -1,4 +1,8 @@
 #include <toBeSorted/counters/counter.h>
+#include <toBeSorted/counters/counters.h>
+#include <toBeSorted/file_manager.h>
+#include <toBeSorted/flag_space.h>
+#include <toBeSorted/unk_flag_stuff.h>
 
 // TODO use the item flag manager once it exists
 class ItemFlagManager {
@@ -13,15 +17,14 @@ public:
     /** 0x20 */ virtual void setFlag(u16 flag);
     /** 0x24 */ virtual void unsetFlag(u16 flag);
     /** 0x28 */ virtual void setFlagOrCounterToValue(u16 flag, u16 value);
-    /** 0x2C */ virtual  u16 getCounterOrFlag(u16 flag);
-    /** 0x30 */ virtual  u16 getUncommittedValue(u16 flag);
+    /** 0x2C */ virtual u16 getCounterOrFlag(u16 flag);
+    /** 0x30 */ virtual u16 getUncommittedValue(u16 flag);
     /** 0x34 */ virtual void unk3();
-    /** 0x38 */ virtual  u16 *getSaveFlagSpace() = 0;
+    /** 0x38 */ virtual u16 *getSaveFlagSpace() = 0;
 };
 
 // TODO set up item flag manager
 extern "C" ItemFlagManager *lbl_80575400;
-
 
 /* 8016cc40 */ s32 Counter::checkedAdd(s32 num) {
     s32 uncommitted = getUncommittedValue();
