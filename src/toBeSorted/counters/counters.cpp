@@ -1,3 +1,7 @@
+#include <toBeSorted/file_manager.h>
+#include <toBeSorted/flag_space.h>
+#include <toBeSorted/unk_flag_stuff.h>
+
 #include <toBeSorted/counters/arrow_counter.h>
 #include <toBeSorted/counters/bomb_counter.h>
 #include <toBeSorted/counters/counter.h>
@@ -15,6 +19,48 @@
 
 // TODO this file matches except for the __sinit_ statit initializer,
 // where this version saves and loads more vtables per chunk
+
+extern "C" UnkFlagDefinition lbl_80511AF0[];
+
+class DungeonflagManager;
+extern DungeonflagManager *lbl_80575404;
+
+class DungeonflagManager {
+public:
+    bool mShouldCommit;
+    u16 mStageIndex;
+    UnkFlagStuff *mFlagStuff;
+    FlagSpace mFlagSpace;
+
+    static u16 sDungeonFlags[8];
+    // static DungeonflagManager *sInstance;
+
+    void copyFromSave(s16 flag);
+    void copyFromSave(u16 flagIndex);
+    void setCommitFlag(u16 flag);
+    DungeonflagManager();
+    void setupFlagStuff();
+    void setToValue(u16 flag, u16 value);
+    void setFlag(u16 flag);
+    u16 getDungeonFlag(u16 flag);
+    bool doCommit();
+};
+
+/* 8016cda0 */ u16 SmallKeyCounter::getCommittedValue() {
+    DungeonflagManager *dMgr = lbl_80575404;
+    FileManager *mgr = FileManager::sInstance;
+    u16 offset = dMgr->mStageIndex * 8;
+    return dMgr->mFlagStuff->getCounterOrFlag(counterId, mgr->getDungeonFlagsConst() + offset, 8);
+}
+
+/*  */ u16 SmallKeyCounter::getUncommittedValue() {
+    return lbl_80575404->getDungeonFlag(counterId);
+}
+
+/*  */ void SmallKeyCounter::setValue(u16 value) {
+    lbl_80575404->setToValue(counterId, value);
+}
+
 
 SmallKeyCounter small_key_counter;
 PouchExpansionCounter pouch_expansion_counter;
@@ -155,138 +201,3 @@ s32 getCounterByIndex(u16 counterIdx) {
 s32 getMaxItemCount(u16 counterIdx) {
     return Counters::sInstance.ITEM_COUNTERS[counterIdx]->getMax();
 }
-
-// TODO: It is extremely suspicious that these generate in the
-// exact inverse order of the dtors and the same order of the vtables
-
-/* 8016d7b0 */ u16 GratitudeCrystalCounter::getMax() {
-    return 127;
-};
-
-/* 8016d7c0 */ u16 GoddessPlumeCounter::getMax() {
-    return 99;
-};
-
-/* 8016d7d0 */ u16 GoldenSkullCounter::getMax() {
-    return 99;
-};
-
-/* 8016d7e0 */ u16 BlueBirdFeatherCounter::getMax() {
-    return 99;
-};
-
-/* 8016d7f0 */ u16 EvilCrystalCounter::getMax() {
-    return 99;
-};
-
-/* 8016d800 */ u16 OrnamentalSkullCounter::getMax() {
-    return 99;
-};
-
-/* 8016d810 */ u16 MonsterHornCounter::getMax() {
-    return 99;
-};
-
-/* 8016d820 */ u16 MonsterClawCounter::getMax() {
-    return 99;
-};
-
-/* 8016d830 */ u16 JellyBlobCounter::getMax() {
-    return 99;
-};
-
-/* 8016d840 */ u16 DuskRelicCounter::getMax() {
-    return 99;
-};
-
-/* 8016d850 */ u16 AmberRelicCounter::getMax() {
-    return 99;
-};
-
-/* 8016d860 */ u16 AncientFlowerCounter::getMax() {
-    return 99;
-};
-
-/* 8016d870 */ u16 EldinOreCounter::getMax() {
-    return 99;
-};
-
-/* 8016d880 */ u16 LizardTailCounter::getMax() {
-    return 99;
-};
-
-/* 8016d890 */ u16 TumbleweedCounter::getMax() {
-    return 99;
-};
-
-/* 8016d8a0 */ u16 BirdFeatherCounter::getMax() {
-    return 99;
-};
-
-/* 8016d8b0 */ u16 HornetLarvaeCounter::getMax() {
-    return 99;
-};
-
-/* 8016d8c0 */ u16 StarryFireflyCounter::getMax() {
-    return 99;
-};
-
-/* 8016d8d0 */ u16 SkyStagBeetleCounter::getMax() {
-    return 99;
-};
-
-/* 8016d8e0 */ u16 EldinRollerCounter::getMax() {
-    return 99;
-};
-
-/* 8016d8f0 */ u16 GerudoDragonflyCounter::getMax() {
-    return 99;
-};
-
-/* 8016d900 */ u16 SandCicadaCounter::getMax() {
-    return 99;
-};
-
-/* 8016d910 */ u16 LanayruAntCounter::getMax() {
-    return 99;
-};
-
-/* 8016d920 */ u16 BlessedButterflyCounter::getMax() {
-    return 99;
-};
-
-/* 8016d930 */ u16 VolcanicLadybugCounter::getMax() {
-    return 99;
-};
-
-/* 8016d940 */ u16 SkyloftMantisCounter::getMax() {
-    return 99;
-};
-
-/* 8016d950 */ u16 DekuHornetCounter::getMax() {
-    return 99;
-};
-
-/* 8016d960 */ u16 WoodlandRhinoBeetleCounter::getMax() {
-    return 99;
-};
-
-/* 8016d970 */ u16 FaronGrasshopperCounter::getMax() {
-    return 99;
-}
-
-/* 8016d980 */ u16 HeartContainerCounter::getMax() {
-    return 24;
-}
-
-/* 8016d990 */ u16 HeartPieceCounter::getMax() {
-    return 3;
-}
-
-/* 8016D9A0 */ u16 PouchExpansionCounter::getMax() {
-    return 7;
-}
-
-/* 8016D9B0 */ u16 SmallKeyCounter::getMax() {
-    return 15;
-};
