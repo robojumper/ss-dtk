@@ -209,6 +209,7 @@ cflags_rel = [
     *cflags_framework,
     "-sdata 0",
     "-sdata2 0",
+    "-ipa file",
 ]
 
 

@@ -12,15 +12,23 @@ struct dynAcTODO {
 class d_t : public dAcBase_c {
 public:
     virtual ~d_t() {}
+    virtual int draw() override {
+        return 1;
+    }
+    virtual int actorExecute() override {
+        return 1;
+    }
+    virtual int doDelete() override {
+        return 1;
+    }
+    virtual int create() override {
+        return 1;
+    }
 };
 
 class d_t_tackle : public d_t {
 public:
     d_t_tackle() {}
-    virtual int create() override;
-    virtual int doDelete() override;
-    virtual int draw() override;
-    virtual int actorExecute() override;
     virtual ~d_t_tackle() {}
 };
 
@@ -30,20 +38,3 @@ void *create() {
 }
 
 dynAcTODO lbl_472_data_0 = { create, 0x0210, 0x0241, 0, 0 };
-
-
-int d_t_tackle::create() {
-    return 1;
-}
-
-int d_t_tackle::doDelete() {
-    return 1;
-}
-
-int d_t_tackle::actorExecute() {
-    return 1;
-}
-
-int d_t_tackle::draw() {
-    return 1;
-}
