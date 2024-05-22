@@ -106,7 +106,7 @@ config.version = args.version.upper()
 if config.version not in VERSIONS:
     sys.exit(f"Invalid version '{config.version}', expected {versions_str}")
 version_num = VERSIONS.index(config.version)
-# config.build_rels = False
+config.build_rels = True
 
 # Apply arguments
 config.build_dir = args.build_dir
@@ -120,7 +120,7 @@ if not is_windows():
 
 # Tool versions
 config.compilers_tag = "20231018"
-config.dtk_tag = "v0.7.5"
+config.dtk_tag = "v0.8.3"
 config.sjiswrap_tag = "v1.1.1"
 config.wibo_tag = "0.6.11"
 
@@ -270,7 +270,6 @@ config.libs = [
         "host": False,
         "objects": [
             # machine (m_name
-            Object(NonMatching, "Runtime/__init_cpp_exceptions.cpp"),
             Object(Matching, "toBeSorted/unk_flag_stuff.cpp"),
             Object(Matching, "toBeSorted/bitwise_flag_helper.cpp"),
             Object(Matching, "toBeSorted/sceneflag_manager.cpp"),
@@ -316,13 +315,16 @@ config.libs = [
     #     "name",
     #     [ ],
     # ),
-    # {
-    #     "lib": "Runtime.PPCEABI.H",
-    #     "mw_version": "Wii/1.7", #TODO: change
-    #     "cflags": cflags_runtime,
-    #     "host": False,
-    #     "objects": [ ],
-    # },
+    {
+        "lib": "Runtime.PPCEABI.H",
+        "mw_version": "Wii/1.6",
+        "cflags": cflags_runtime,
+        "host": False,
+        "objects": [
+            Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
+            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+        ],
+    },
     # NW4R
     nw4rLib(
         "db",
@@ -412,21 +414,22 @@ config.libs = [
     #     ],
     # },
     # Begin RELs
-    # {
-    #     "lib": "REL",
-    #     "mw_version": "GC/1.3.2",
-    #     "cflags": cflags_rel,
-    #     "host": False,
-    #     "objects": [
-    #         Object(Matching, "REL/executor.c"),
-    #         Object(
-    #             Matching,
-    #             "REL/global_destructor_chain.c",
-    #             source="Runtime.PPCEABI.H/global_destructor_chain.c",
-    #         ),
-    #     ],
-    # },
-    # Rel(Matching/NonMatching, "rel_name", "rel_folder/rel_name.cpp"),
+    {
+        "lib": "REL",
+        "mw_version": "Wii/1.6",
+        "cflags": cflags_rel,
+        "host": False,
+        "objects": [
+            Object(Matching, "REL/executor.c"),
+            Object(
+                NonMatching,
+                "REL/global_destructor_chain.c",
+                source="Runtime.PPCEABI.H/global_destructor_chain.c",
+            ),
+        ],
+    },
+    # Rel(NonMatching, "d_profile", "REL/d_profile.cpp"),
+    Rel(Matching, "d_t_tackle", "REL/d_t/d_t_tackle.cpp"),
 ]
 
 if args.mode == "configure":
