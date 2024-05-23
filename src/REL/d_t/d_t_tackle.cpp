@@ -12,10 +12,10 @@ struct dynAcTODO {
 class d_t : public dAcBase_c {
 public:
     virtual ~d_t() {}
-    virtual int draw() override {
+    virtual int actorExecute() override {
         return 1;
     }
-    virtual int actorExecute() override {
+    virtual int draw() override {
         return 1;
     }
     virtual int doDelete() override {
