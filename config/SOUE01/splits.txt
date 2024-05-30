@@ -235,6 +235,10 @@ m/m_dvd.cpp:
 	.sbss       start:0x80575C10 end:0x80575C38
 	.bss        start:0x805B85C0 end:0x805CB078
 
+m/m_fader_base.cpp:
+	.text       start:0x802F0620 end:0x802F081C
+	.data       start:0x80542968 end:0x80542990
+
 m/m_heap.cpp:
 	.text       start:0x802F0F00 end:0x802F1660
 	.rodata     start:0x804F0570 end:0x804F0580

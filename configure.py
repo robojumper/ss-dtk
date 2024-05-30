@@ -306,6 +306,7 @@ config.libs = [
             Object(Matching, "m/m_angle.cpp"),
             Object(Matching, "m/m_dvd.cpp"),
             Object(Matching, "m/m_heap.cpp"),
+            Object(Matching, "m/m_fader_base.cpp"),
             Object(NonMatching, "m/m_mtx.cpp"),
             Object(Matching, "DynamicLink.cpp"),
             # framework (f_name)
